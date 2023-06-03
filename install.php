@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "r@@t";
-$dbname = "db_cpsuinventory";
+$dbname = "db_stem";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password);
@@ -19,7 +19,7 @@ if (mysqli_query($conn, $sql)) {
         <head>
             <meta charset='utf-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1'>
-            <title>DLANHS | Biometric Login</title>
+            <title>HNHS | Tracer Study</title>
 
             <!-- Google Font: Source Sans Pro -->
             <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback'>
@@ -28,7 +28,7 @@ if (mysqli_query($conn, $sql)) {
             <!-- Theme style -->
             <link rel='stylesheet' href='assets/adminLTE-3/dist/css/adminlte.min.css'>
             <!-- Logo -->
-            <link rel='shortcut icon' type='' href='assets//img/logo/DLANHS_logo.png'>
+            <link rel='shortcut icon' type='' href='assets/adminLTE-3/img/logo.png'>
 
         </head>
         <body class='hold-transition login-page'>
@@ -62,7 +62,7 @@ if (mysqli_query($conn, $sql)) {
         <head>
             <meta charset='utf-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1'>
-            <title>DLANHS | Biometric Login</title>
+            <title>HNHS | Tracer Study</title>
 
             <!-- Google Font: Source Sans Pro -->
             <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback'>
@@ -71,7 +71,7 @@ if (mysqli_query($conn, $sql)) {
             <!-- Theme style -->
             <link rel='stylesheet' href='assets/adminLTE-3/dist/css/adminlte.min.css'>
             <!-- Logo -->
-            <link rel='shortcut icon' type='' href='assets//img/logo/DLANHS_logo.png'>
+            <link rel='shortcut icon' type='' href='assets/adminLTE-3/img/logo.png'>
 
         </head>
         <body class='hold-transition login-page'>
@@ -107,7 +107,7 @@ if (mysqli_query($conn, $sql)) {
 // Select the database
 mysqli_select_db($conn, $dbname);
 
-$password = mysqli_real_escape_string($conn, '$2y$10$DMeckYrbcEJ40CTac8xHiOMoXhSDUcrLQjjMyqsD.Pb3ExatXyn7q');
+$password = mysqli_real_escape_string($conn, '$2y$10$XVG96XAkEaMFRPgoCKDLneCps21.cCO3Yg95XIukDtR/nGRxmtCWq');
 // SQL queries to create database, tables and insert data
 $sql = "
         CREATE TABLE users (
@@ -126,30 +126,30 @@ $sql = "
             `updated_at` varchar(100) DEFAULT NULL
         );
         INSERT INTO users (`id`, `username`, `password`, `fname`, `mname`, `lname`, `emp_gender`, `usertype`, `token`, `status`, `log_status`, `created_at`, `updated_at`) 
-        VALUES (1, 'admin', '$2y$10$k9MxLPxxZMOUtX4y7D2nVuKEX5FQFHy6ggvbX8vXH0exQLd4g.RG2', 'JOSHUA KYLE', 'L', 'DALMACIO', 'Male', 'Administrator', 'bc73da01222532f6c7adbc57483200d3', '1', 0, '2023-05-02 13:38:36', NULL);
+        VALUES (1, 'admin', '$password', 'JOHN', 'C', 'WICK', 'Male', 'Administrator', 'bc73da01222532f6c7adbc57483200d3', '1', 0, '2023-05-02 13:38:36', NULL);
 
-        CREATE TABLE ppei (
+        CREATE TABLE responses (
             `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            `property_no` varchar(100) NOT NULL,
-            `qty` int(30) NOT NULL,
-            `serial_no` varchar(200) NOT NULL,
-            `category_id` int(11) NOT NULL,
-            `specification` text NOT NULL,
-            `acquisition_date` varchar(200) NOT NULL,
-            `unit` varchar(200) NOT NULL,
-            `unit_value` varchar(100) NOT NULL,
-            `classification_id` int(11) NOT NULL,
-            `end_user` varchar(200) NOT NULL,
-            `where_about` varchar(200) NOT NULL,
-            `remarks` varchar(200) NOT NULL,
+            `lname` varchar(30) NOT NULL,
+            `fname` varchar(30) NOT NULL,
+            `mname` varchar(30) NOT NULL,
+            `gender` varchar(50) NOT NULL,
+            `stem_track` text NOT NULL,
+            `year_grad` varchar(50) NOT NULL,
+            `pursue_study` varchar(50) NOT NULL,
+            `course` text DEFAULT NULL,
+            `school` text DEFAULT NULL,
+            `job_status` text DEFAULT NULL,
+            `name_job` text DEFAULT NULL,
+            `instcom_name` text DEFAULT NULL,
             `token` varchar(200) NOT NULL,
-            `created_at` datetime NOT NULL DEFAULT current_timestamp()
+            `created_at` date NOT NULL DEFAULT current_timestamp()
         );
 
         ";
 
 // Create SQL file
-file_put_contents('db_biometric.sql', $sql);
+//file_put_contents('db_biometric.sql', $sql);
 
 //Execute SQL queries
 if (mysqli_multi_query($conn, $sql)) {

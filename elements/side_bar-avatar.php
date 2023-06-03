@@ -9,7 +9,7 @@
         $result = $stmt->get_result();
         $user = $result->fetch_object();
     ?>
-    <a href="./profile" class="d-block"><?php echo $user->fname ?></a>
+    <a href="./profile" class="d-block"><?php echo $user->fname ?> <?php echo $user->lname ?></a>
     <a href="./profile" style="font-size: 10pt">
         <i class="fa fa-circle text-success" style="font-size: 8pt"></i> <?php echo $user->usertype ?>
     </a>
